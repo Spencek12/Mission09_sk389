@@ -1,18 +1,4 @@
-﻿@*<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    <link href="/lib/css/bootstrap.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="col-9">
-        @RenderBody()
-    </div>
-</body>
-</html>*@
-
+﻿@*General layout page for site*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,12 +7,13 @@
     <link href="/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="bg-dark text-white p-2">
-        <span class="navbar-brand ml-2">My Bookstore</span>
+    @*Here, I added opacity to the navbar and changed the font*@
+    <div class="bg-dark bg-opacity-50 text-white p-2">
+        <span class="navbar-collapse m-lg-5 font-monospace">My Bookstore</span>
     </div>
     <div class="row m-1 p-1">
         <div id="categories" class="col-3">
-            Check out our selection!
+            <vc:categories></vc:categories>
         </div>
         <div class="col-9">
             @RenderBody()

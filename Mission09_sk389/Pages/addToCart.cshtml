@@ -1,0 +1,42 @@
+﻿@page
+@model Mission09_sk389.Pages.addToCartModel
+@{
+}
+
+<h2>Your Cart</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quanitity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{double subtotal = 0;}
+        @foreach(var i in Model.basket.Items)
+        {
+            subtotal += i.Book.Price;
+        <tr>
+            <td>@i.Book.Title</td>
+            <td>@i.Quantity</td>
+            <td>@i.Book.Price.ToString("c")</td>
+            <td>@(subtotal.ToString("c"))</td>
+
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Total</td>
+            <td>@Model.basket.CalculateTotal().ToString("c")</td>
+        </tr>
+    </tfoot>
+</table> 
+
+<div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+</div>

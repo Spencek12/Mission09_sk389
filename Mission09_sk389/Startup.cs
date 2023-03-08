@@ -37,6 +37,12 @@ namespace Mission09_sk389
                 });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+
+            services.AddRazorPages();
+
+            //Enable saving a session
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,12 +55,33 @@ namespace Mission09_sk389
 
             //Tells asp.net to use the files in the wwwroot folder
             app.UseStaticFiles();
-
+            //Sessions
+            app.UseSession();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                //When category and page are specified
+                endpoints.MapControllerRoute(
+                name: "categorypage",
+                pattern: "{category}/page{pageNum}",
+                defaults: new { Controller = "Home", action = "Index" });
+
+                //Endpoint to determine what comes in and create what comes out when page is specified
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
+
+                //When category (only) is specified (send them to the first page of each category
+                endpoints.MapControllerRoute(
+                name: "category",
+                pattern: "{category}",
+                defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
+               
                 endpoints.MapDefaultControllerRoute();
+
+                endpoints.MapRazorPages();
             });
         }
     }
