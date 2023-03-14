@@ -26,7 +26,7 @@ namespace Mission09_sk389.Models
             }
             else
             {
-                line.Quantity += line.Quantity;
+                line.Quantity += qty;
             }
         }
 
