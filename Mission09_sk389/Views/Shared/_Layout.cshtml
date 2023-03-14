@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-    @*Here, I added opacity to the navbar and changed the font*@
-    <div class="bg-dark bg-opacity-50 text-white p-2">
-        <span class="navbar-collapse m-lg-5 font-monospace">My Bookstore</span>
+    <div class="bg-dark text-white p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col navbar-brand">My Bookstore</div>
+                <div class="col-6 text-right">
+                    <vc:cart-summary />
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row m-1 p-1">
         <div id="categories" class="col-3">

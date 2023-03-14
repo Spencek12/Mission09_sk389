@@ -37,12 +37,17 @@ namespace Mission09_sk389
                 });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+            services.AddScoped<IPaymentRepository, EFPaymentRepository>();
 
             services.AddRazorPages();
 
             //Enable saving a session
             services.AddDistributedMemoryCache();
             services.AddSession();
+
+            //Check if new session, create or use current session to continue
+            services.AddScoped<Basket>(x => SessionBasket.GetBasket(x));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
